@@ -32,4 +32,4 @@ class Facebook:
 		
 		userInfo=requests.get('https://graph.facebook.com/me',headers=headerDict)
 		
-		return uesrInfo
+		return uesrInfo.json()
