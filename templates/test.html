@@ -1,13 +1,58 @@
+
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '960467001449769',
+      cookie     : true,
+      xfbml      : true,
+      version    : 'v10.0'
+    });
+      
+    FB.AppEvents.logPageView();   
+      
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "https://connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>{{title}}</title>
 </head>
 <body>
-    <h1>MIRAJ PARATHA</h1>
-    
+    <h1>{{ name }}</h1>
+
+    <button id='click'>Click me for ajax</button>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <script>
+        $('#click').click(function () {
+            $.ajax({
+                type: 'GET',
+                url: '/data',
+                success: function (response) {
+                    alert(JSON.stringify(response));
+            }
+        })
+        })
+
+      
+    </script>
+    <br>
+    <br>
+    <br>
+    <button onclick="location.href = '/login';" id="myButton">Home</button>
+    <button onclick="location.href = '{{url_face}}';" id="mButton">Home007</button>
 </body>
 </html>
