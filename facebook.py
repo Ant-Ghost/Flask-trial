@@ -15,7 +15,14 @@ class Facebook:
 
 	auth_endpoint = f"https://www.facebook.com/v6.0/dialog/oauth?client_id={CLIENT_ID}&redirect_uri={redirect_url}&state={state}"
 
-	def get_token():
+
+	def __init__(self):
+		pass
+
+
+
+
+	def get_token(self):
 
 		access_token_url=f"https://graph.facebook.com/v6.0/oauth/access_token?redirect_uri={redirect_url}&client_id={CLIENT_ID}&client_secret={CLIENT_SECRET}&code={code}"
 
@@ -24,3 +31,5 @@ class Facebook:
 		print(response.json())
 
 		input()
+
+		return
