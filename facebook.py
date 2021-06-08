@@ -26,7 +26,12 @@ class Facebook:
 
 		response = requests.get(access_token_url)
 
-		print(response.json()['access_token'])
+		acctok=response.json()['access_token']
+		
+		headerDict={'Accept':'application/json','Authorization':f"Bearer {acctok}"}
+		
+		userInfo=requests.get('https://graph.facebook.com/me',headers=headerDict)
+		print(userInfo.json())
 		input()
 
 		return
