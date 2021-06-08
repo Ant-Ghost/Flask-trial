@@ -88,14 +88,12 @@ def authorize():
     return redirect('/')
 
 
-@app.route('/face', methods=['GET'])
+@app.route('/face/', methods=['GET'])
 def face():
     F.code=request.args.get("code")
-    print(F.code)
-    input()
     F.get_token()
-    session['email']= user_info['email']
-    print(user_info)
+    #session['email']= user_info['email']
+    #print(user_info)
     return redirect('/')
 
 
