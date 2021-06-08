@@ -20,7 +20,7 @@ class Facebook:
 
 
 
-	def get_token(self, code):
+	def get_User_Info(self, code):
 
 		access_token_url=f"https://graph.facebook.com/v6.0/oauth/access_token?redirect_uri={self.redirect_url}&client_id={self.CLIENT_ID}&client_secret={self.CLIENT_SECRET}&code={code}"
 
@@ -31,7 +31,5 @@ class Facebook:
 		headerDict={'Accept':'application/json','Authorization':f"Bearer {acctok}"}
 		
 		userInfo=requests.get('https://graph.facebook.com/me',headers=headerDict)
-		print(userInfo.json())
-		input()
-
-		return
+		
+		return uesrInfo
