@@ -93,7 +93,7 @@ def authorize():
 def face():
     code=request.args.get("code")
     #ff = F()
-    user_info=ff.get_token(code)
+    user_info=ff.get_User_Info(code)
     #session['email']= user_info['email']
     #print(user_info)
     return f"<h1>{user_info['name']}<h1><br><h1>{user_info['id']}<h1>"
