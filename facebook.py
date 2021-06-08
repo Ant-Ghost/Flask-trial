@@ -11,8 +11,6 @@ class Facebook:
 
 	state = ''.join([str(random.randint(1,7)) for i in range(0,6)])
 
-	code = ''
-
 	auth_endpoint = f"https://www.facebook.com/v6.0/dialog/oauth?client_id={CLIENT_ID}&redirect_uri={redirect_url}&state={state}"
 
 
@@ -22,14 +20,13 @@ class Facebook:
 
 
 
-	def get_token(self):
+	def get_token(self, code):
 
-		access_token_url=f"https://graph.facebook.com/v6.0/oauth/access_token?redirect_uri={redirect_url}&client_id={CLIENT_ID}&client_secret={CLIENT_SECRET}&code={code}"
+		access_token_url=f"https://graph.facebook.com/v6.0/oauth/access_token?redirect_uri={self.redirect_url}&client_id={self.CLIENT_ID}&client_secret={self.CLIENT_SECRET}&code={code}"
 
 		response = requests.get(access_token_url)
 
-		print(response.json())
-
+		print(response.json()['access_token'])
 		input()
 
 		return

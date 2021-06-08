@@ -11,6 +11,7 @@ app = Flask(__name__)
 app.secret_key = 'random key'
 
 
+ff=F()
 
 
 oauth = OAuth(app)
@@ -47,7 +48,7 @@ def hello_world():
     #input()
     name = "Chris"
     title = "first page"
-    return render_template('test.html', name=name, title=title, url_face=F.auth_endpoint)
+    return render_template('test.html', name=name, title=title, url_face=ff.auth_endpoint)
 
 
 @app.route('/data')
@@ -90,8 +91,9 @@ def authorize():
 
 @app.route('/face/', methods=['GET'])
 def face():
-    F.code=request.args.get("code")
-    F.get_token()
+    code=request.args.get("code")
+    #ff = F()
+    ff.get_token(code)
     #session['email']= user_info['email']
     #print(user_info)
     return redirect('/')
