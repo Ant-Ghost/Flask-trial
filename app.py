@@ -30,15 +30,15 @@ google = oauth.register(
 
 facebook = oauth.register(
     name='facebook',
-    client_id='870022280256541',
-    client_secret='1c5470c3ded15fbc7fd0c0e2a2c97638',
+    client_id='2896973843953926',
+    client_secret='ca2531220b6a1259e046d0c406633a42',
     access_token_url='https://graph.facebook.com/v6.0/oauth/access_token',
     access_token_params=None,
     authorize_url='https://www.facebook.com/v6.0/dialog/oauth',
     authorize_params=None,
-    api_base_url='',
+    api_base_url='https://graph.facebook.com/',
     userinfo_endpoint='https://graph.facebook.com/me',  # This is only needed if using openId to fetch user info
-    client_kwargs={'scope': 'openid email profile'},
+    client_kwargs={'scope': 'email'},
     )
 
 @app.route('/')
@@ -65,6 +65,8 @@ def data():
 @app.route('/login')
 def login():
     google = oauth.create_client('google')
+    print(google)
+    input()
     redirect_url = url_for('authorize', _external=True)
     return google.authorize_redirect(redirect_url)
 
@@ -81,11 +83,11 @@ def login2():
 @app.route('/authorize')
 def authorize():
     token = oauth.google.authorize_access_token()
-    print(token)
+    #print(token)
     resp = oauth.google.get('userinfo')
     user_info = resp.json()
     session['email']= user_info['email']
-    print(user_info)
+    #print(user_info)
     return redirect('/')
 
 
@@ -98,7 +100,25 @@ def face():
     #print(user_info)
     return f"<h1>{user_info['name']}<h1><br><h1>{user_info['id']}<h1>"
 
+@app.route('/login3')
+def login3():
+    facebook = oauth.create_client('facebook')
+    print(facebook)
+    input()
+    redirect_url = url_for('auth_face', _external=True)
+    return facebook.authorize_redirect(redirect_url)
 
+    
+
+@app.route('/auth_face')
+def auth_face():
+    token = oauth.facebook.authorize_access_token()
+    print(token)
+    resp = oauth.facebook.get('userinfo')
+    user_info = resp.json()
+    #session['email']= user_info['email']
+    print(user_info)
+    return redirect('/')
 
 if __name__=='__main__':
     app.run(debug=True)
