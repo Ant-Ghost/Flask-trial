@@ -114,7 +114,7 @@ def login3():
 def auth_face():
     token = oauth.facebook.authorize_access_token()
     print(token)
-    resp = oauth.facebook.get('/me',params={'fields'='name,email'})
+    resp = oauth.facebook.get('/me',params={'fields':'name,email'})
     user_info = resp.json()
     #session['email']= user_info['email']
     print(user_info)
