@@ -105,12 +105,12 @@ def login3():
     facebook = oauth.create_client('facebook')
     print(facebook)
     input()
-    redirect_url = url_for('auth_face', _external=True)
+    redirect_url = url_for('auth_face', _external=True,_scheme='https')
     return facebook.authorize_redirect(redirect_url)
 
     
 
-@app.route('/auth_face')
+@app.route('/auth_face/')
 def auth_face():
     token = oauth.facebook.authorize_access_token()
     print(token)
